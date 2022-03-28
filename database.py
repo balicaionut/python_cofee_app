@@ -1,8 +1,9 @@
 from cgi import test
 import sqlite3
 
-connection = sqlite3.connect("data.db")
+def connect():
+    connection = sqlite3.connect("data.db")
 
-with connection:
-    connection.execute("CREATE TABLE beans (id INTEGER PRIMARY KEY, name TEXT, method TEXT, rating INTEGER);")
-    
+def create_tables(connection):
+    with connection:
+        connection.execute("CREATE TABLE beans (id INTEGER PRIMARY KEY, name TEXT, method TEXT, rating INTEGER);")
