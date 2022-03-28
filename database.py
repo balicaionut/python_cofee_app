@@ -3,7 +3,7 @@ from multiprocessing import connection
 import sqlite3
 
 
-CREATE_BEANS_TABLE = "CREATE TABLE beans (id INTEGER PRIMARY KEY, name TEXT, method TEXT, rating INTEGER);"
+CREATE_BEANS_TABLE = "CREATE TABLE IF NOT EXISTS beans (id INTEGER PRIMARY KEY, name TEXT, method TEXT, rating INTEGER);"
 
 INSERT_BEAN = "INSERT INTO beans (name, method, rating) values (?, ?, ?);"
 
@@ -19,7 +19,7 @@ LIMIT 1;"""
 
 
 def connect():
-    connection = sqlite3.connect("data.db")
+    return sqlite3.connect("data.db")
 
 
 def create_tables(connection):
