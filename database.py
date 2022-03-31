@@ -18,6 +18,9 @@ ORDER BY rating DESC
 LIMIT 1;"""
 
 
+GET_METHODS_TO_RATINGS = "SELECT method, AVG(rating) FROM beans GROUP BY method;"
+
+
 def connect():
     return sqlite3.connect("data.db")
 
@@ -41,6 +44,12 @@ def get_beans_by_name(connection, name):
     with connection:
         return connection.execute(GET_BEANS_BY_NAME, (name,)).fetchall()
 
+
 def get_best_preparation_for_bean(connection, name):
     with connection:
         return connection.execute(GET_BEST_PREPARATION_FOR_BEAN, (name,)).fetchone()
+
+
+def get_methods_to_ratings(connection):
+    with connection:
+        return connection.execute(GET_METHODS_TO_RATINGS).fetchall()
